@@ -17,7 +17,6 @@ KeyCodes =
 
 class Snake.KeyDispatcher extends Snake.EventEmitter
   constructor: (element) ->
-    console.log element
     element.addEventListener 'keydown', @down
     element.addEventListener 'keyup', @up
   down: (e) =>
