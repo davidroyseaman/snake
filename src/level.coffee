@@ -7,9 +7,11 @@
   use a facade to make it behave more level like.
   (ImageData types are pretty fast, transforming the data on load may not give any benefit)
 ###
-class Level
+
+class Snake.Level extends Snake.EventEmitter
   constructor: (@level_image_url, @level_mask_url) ->
     console.log @level_image_url
+    loadImageData @level_image_url
 
 
 ###
@@ -23,5 +25,20 @@ class LevelData
     return @mask({x,y})[0] == 0
 
 
+###
+  Some helper functions for stuff that might need to be changed when moved to serverside
+###
+loadImageData = (url) ->
+  # Extract Image data from the source images:
+  img = document.createElement 'img'
+  img.addEventListener 'load', ->
+    console.log(img)
+    console.log x for x of img
 
-Snake.Level = Level
+    console.log img.naturalWidth
+
+
+  img.src = url
+
+  #document.body.appendChild img
+
